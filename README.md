@@ -1,5 +1,7 @@
 # Blackjack
+
 ![Blackjack #1](/images/1.png)
+
 Blackjack is classic card game written for [Python 3 Bootcamp](https://www.udemy.com/complete-python-bootcamp/).
 ***
 To learn about this game you can visit the [Wikipedia page](https://en.wikipedia.org/wiki/Blackjack).
