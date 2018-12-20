@@ -376,5 +376,4 @@ while game_on != 'finish':
             else:
                 print("\nThanks for the game! Bye!\n")
                 break
-
     break
