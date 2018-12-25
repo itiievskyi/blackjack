@@ -57,7 +57,7 @@ class Deck():
 
         self.shuffle()
         #hello, my name is Igor :)
-    def print(self):
+    def self_print(self):
         '''
         Prints a list of pairs 'suit + rank'
         '''
@@ -147,7 +147,7 @@ class Table():
         self.coef = 1.0
         self.log = []
 
-    def print(self):
+    def self_print(self):
         '''
         Prints players' cards as well as available money and last action
         '''
@@ -252,7 +252,7 @@ while game_on != 'finish':
         dealer.deck[1].closed = True
         table.addlog("Players get their cards")
         table.count()
-        table.print()
+        table.self_print()
         game_on = 'player'
 
     # Player's turn
@@ -263,12 +263,12 @@ while game_on != 'finish':
                 if 21 in player.points:
                     table.addlog(f"{player.name} has got 21 points. Dealer's turn")
                     game_on = 'dealer'
-                    table.print()
+                    table.self_print()
                     break
                 elif min(player.points) > 21:
                     table.addlog(f"BUSTED! {player.name} loses his bet: ${table.bet}")
                     game_on = 'replay'
-                    table.print()
+                    table.self_print()
                     print(f"\033[0;31mBUSTED! You lose your bet: ${table.bet}\n\033[0;0m")
                     break
 
@@ -300,7 +300,7 @@ while game_on != 'finish':
                     player.take_card(game_deck.deck.pop())
                     table.count()
                     table.addlog(f"{player.name} takes another card: {player.deck[-1]}")
-                    table.print()
+                    table.self_print()
                     continue
                 else:
                     game_on = 'dealer'
@@ -314,7 +314,7 @@ while game_on != 'finish':
             if len(dealer.deck) == 2 and dealer.deck[0] == dealer.deck[1] == 'A' and dealer.deck[1].closed == False:
                 table.addlog(f"Dealer has Golden point and {player.name} loses his bet: ${table.bet}")
                 game_on = 'replay'
-                table.print()
+                table.self_print()
                 print(f"\033[0;31mDealer has Golden point and you lose your bet: ${table.bet}\n\033[0;0m")
                 break
 
@@ -330,7 +330,7 @@ while game_on != 'finish':
                     player.add_money(table.bet)
                     table.addlog(f"Draw. Players return their bets")
                     game_on = 'replay'
-                    table.print()
+                    table.self_print()
                     print(f"\033[0;33mDraw!\033[0;0m\n")
                     break
                 elif player_max > dealer_max:
@@ -340,7 +340,7 @@ while game_on != 'finish':
                 elif player_max < dealer_max:
                     table.addlog(f"{player.name} has less points and loses his bet: ${table.bet}")
                     game_on = 'replay'
-                    table.print()
+                    table.self_print()
                     print(f"\033[0;31mYou have less points and lose your bet: ${table.bet}\n\033[0;0m")
                     break
 
@@ -350,15 +350,16 @@ while game_on != 'finish':
                 dealer.deck[1].closed = False
                 table.addlog(f"Dealer opens his card and it's {dealer.deck[-1]}")
                 table.count()
-                table.print()
+                table.self_print()
                 continue
             else:
                 time.sleep(1)
                 dealer.take_card(game_deck.deck.pop())
                 table.count()
                 table.addlog(f"Dealer takes card and it's {dealer.deck[-1]}")
-                table.print()
+                table.self_print()
 
+    # If palyer wants to play again
     if game_on == 'replay':
         if player.money < 50:
             print("\nYou lose all your money and can't make another bet. The game is over\n")
